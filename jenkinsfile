@@ -43,7 +43,7 @@ pipeline {
         
         stage('Docker build and run'){
             steps{
-                sh 'docker buildx --platform linux/amd64 -t namratha3/tic-tac-toe:latest .'
+                sh 'docker build -t namratha3/tic-tac-toe:latest .'
                 sh 'docker run -d -p 8000:80 namratha3/tic-tac-toe:latest'
             }
         }
