@@ -42,7 +42,7 @@ pipeline {
         }
         stage('Docker image pull'){
             steps{
-                withDockerRegistry(credentialsId: 'docker-creds') {
+                withDockerRegistry(credentialsId: 'docker-creds', url: 'https://index.docker.io/v1/') {
                     sh "docker pull namratha3/tic-tac-toe:latest"
                 }
             }
