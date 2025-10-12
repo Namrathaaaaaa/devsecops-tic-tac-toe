@@ -40,5 +40,12 @@ pipeline {
                 }
             }
         }
+        stage('Docker image pull'){
+            steps{
+                withDockerRegistry(credentialsId: 'docker-creds', toolName: 'docker') {
+                    sh "docker pull namratha3/tic-tac-toe:latest"
+                }
+            }
+        }
     }
 }
