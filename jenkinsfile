@@ -1,0 +1,47 @@
+pipeline {
+    agent any 
+    
+    tools {
+        nodejs 'node21'
+        dockerTool 'docker'
+    }
+
+    environment {
+        SONAR_HOME = tool name: 'sonar'
+    }
+
+    stages {
+        stage('GitHub Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Namrathaaaaaa/devsecops-tic-tac-toe.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonar') { 
+                    sh """
+                        ${SONAR_HOME}/bin/sonar-scanner \
+                        -Dsonar.projectKey=tic-tac-toe \
+                        -Dsonar.projectName='tic-tac-toe-proj' \
+                    """
+                }
+            }
+        }
+        stage(''){
+            
+        }
+    }
+}
