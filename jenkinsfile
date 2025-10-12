@@ -43,9 +43,8 @@ pipeline {
 
         stage('Docker Login to GHCR') {
             steps {
-                // Inject GitHub PAT stored in Jenkins credentials
                 withCredentials([string(credentialsId: 'github-pat', variable: 'GHCR_PAT')]) {
-                    sh 'echo $GHCR_PAT | docker login ghcr.io -u namrathaaaaaa --password-stdin'
+                    sh "docker login ghcr.io -u namrathaaaaaa -p $GHCR_PAT"
                 }
             }
         }
