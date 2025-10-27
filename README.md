@@ -60,7 +60,7 @@ The game implements the following rules:
    cd devsecops-demo
    ```
 
-2. Install dependencies:
+2. Install dependencies
    ```bash
    npm install
    # or
